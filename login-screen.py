@@ -12,6 +12,9 @@ import webbrowser
 from PIL import ImageTk , Image
 import base64
 
+
+import bubbleDriver as bubble
+
 root = Tk()
 
 class Relatorios():
@@ -97,8 +100,16 @@ class Funcs():
     def login(self):
         self.frame_1.destroy()
         self.frames_da_tela()
-        self.widgets_frame2()
-        print("screen changed")
+
+        #self.widgets_frame2()
+
+        email = "prog.aplic.bubble@gmail.com"
+        password = "Um2345678"
+        
+        bubble.google_signin(email, password)
+        self.widgets_logging()
+
+
 
     def select_lista(self):
         self.listaCli.delete(*self.listaCli.get_children())
@@ -172,16 +183,16 @@ class Application(Funcs, Relatorios):
         self.bt_apagar = Button(self.frame_1, text="Login", bd=2, bg = '#107db2',fg = 'white'
                                 , font = ('verdana', 8, 'bold'), command=self.login)
         self.bt_apagar.place(relx=0.35, rely=0.8, relwidth=0.15, relheight=0.05)
-
-    
+        
+    def widgets_logging(self):
+        ## Criação da label
+        self.widgets_logging = Label(self.frame_1, text = "Loading...", bg= '#dfe3ee', fg = '#107db2', font=("Courier", 25))
+        self.widgets_logging.place(relx= 0.05, rely= 0.05 )
         
     def widgets_frame2(self):
         ## Criação da label
-        self.lb_codigo = Label(self.frame_1, text = "BubblefsadLang", bg= '#dfe3ee', fg = '#107db2', font=("Courier", 44))
-        self.lb_codigo.place(relx= 0.05, rely= 0.05 )
-
-        ## Criação da label e entrada
-
+        self.widgets_frame2 = Label(self.frame_1, text = "Bubble", bg= '#dfe3ee', fg = '#107db2', font=("Courier", 25))
+        self.widgets_frame2.place(relx= 0.05, rely= 0.05 )
     
     def Menus(self):
         menubar = Menu(self.root)

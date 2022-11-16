@@ -13,7 +13,7 @@ opts.add_experimental_option("detach", True)
 
 driver = uc.Chrome(chrome_options=opts)
 
-code="""def google_signin(email, password):
+def google_signin(email, password):
     driver.get("https://google.com")
 
     #d=driver.find_element(By.XPATH, "//a[contains(., 'https://accounts.google.com')]")
@@ -36,27 +36,24 @@ code="""def google_signin(email, password):
 
     button_next=driver.find_element(By.XPATH, "//button[contains(., 'Avançar')]")
     button_next.click()
-"""
-exec(code)
+
+def bubbleLogin(email):
+    driver.get("https://bubble.io/login?mode=login")
+    
+    el_xpath = "//div[contains(@class, 'clickable-element')]"
+    WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, el_xpath)))
+    el=driver.find_element(By.XPATH, el_xpath)
+    el.click()
+    
+    el_xpath = '//div[contains(@data-email, "' + email + '")]'
+    WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, el_xpath)))
+    el=driver.find_element(By.XPATH, el_xpath)
+    el.click()
+    
+    div = driver.find_element(By.XPATH, "//a[contains(@href, 'apptestpee')]")
+
 
 email = "prog.aplic.bubble@gmail.com"
 password = "Um2345678"
 
-google_signin(email, password)
-
-driver.get("https://bubble.io/login?mode=login")
-
-
-
-el_xpath = "//div[contains(@class, 'clickable-element')]"
-WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, el_xpath)))
-el=driver.find_element(By.XPATH, el_xpath)
-el.click()
-
-el_xpath = '//div[contains(@data-email, "' + email + '")]'
-WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, el_xpath)))
-el=driver.find_element(By.XPATH, el_xpath)
-el.click()
-
-
-div = driver.find_element(By.XPATH, "//a[contains(@href, 'apptestpee')]")
+#google_signin(email, password)
