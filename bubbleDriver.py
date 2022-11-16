@@ -59,10 +59,16 @@ def bypass_bubble_trial():
     cancel_button.click()
 
 
-def create_field(field_name):
+def create_type(field_name):
+    #go to data type page if not in it
     in_data_type_tab = driver.current_url.find("subtab=Data+Types") > -1
     if not in_data_type_tab:
         driver.get("https://bubble.io/page?name=index&id=apptestpee&tab=tabs-3&subtab=Data+Types&type_id=asfg")
+        bypass_bubble_trial()
+
+    #close trial popup if necessary
+    class_name = "btn-cancel"
+    if len(driver.find_elements(By.CLASS_NAME, class_name)) > 0:
         bypass_bubble_trial()
 
     div_xpath = "//div[contains(@class, 'green-box')]"
