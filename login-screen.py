@@ -144,7 +144,7 @@ class Application(Funcs, Relatorios):
         self.images_base64()
         self.tela()
         self.frames_da_tela()
-        self.widgets_frame1()
+        self.widgets_login()
         #self.select_lista()
         #self.Menus()
         root.mainloop()
@@ -161,7 +161,7 @@ class Application(Funcs, Relatorios):
         self.frame_1.place(relx= 0.02, rely=0.02, relwidth= 0.96, relheight= 0.95)
 
         
-    def widgets_frame1(self):
+    def widgets_login(self):
         ## Criação da label
         self.lb_codigo = Label(self.frame_1, text = "BubbleLang", bg= '#dfe3ee', fg = '#107db2', font=("Courier", 44))
         self.lb_codigo.place(relx= 0.05, rely= 0.05 )
