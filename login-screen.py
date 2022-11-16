@@ -107,6 +107,7 @@ class Funcs():
         password = "Um2345678"
         
         bubble.google_signin(email, password)
+        bubble.bubbleLogin(email)
         self.widgets_logging()
 
 
