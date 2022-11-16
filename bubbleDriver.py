@@ -1,6 +1,5 @@
 #python3.7
 import undetected_chromedriver as uc
-#By = uc.selenium.webdriver.common.by.By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
