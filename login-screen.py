@@ -97,9 +97,9 @@ class Funcs():
         self.desconecta_bd()
         self.select_lista()
         self.limpa_cliente()
+        
     def login(self):
         self.frame_1.destroy()
-        self.frames_da_tela()
 
         #self.widgets_frame2()
 
@@ -108,8 +108,15 @@ class Funcs():
         
         bubble.google_signin(email, password)
         bubble.bubbleLogin(email)
-        self.widgets_logging()
+        
+        self.frames_da_tela()
+        self.widgets_select_app()
 
+        
+    def go_to_page(self):
+        self.frame_1.destroy()
+        self.frames_da_tela()
+        bubble.driver.get("https://bubble.io/page?name=index&id=apptestpee&tab=tabs-3&subtab=Data+Types&type_id=bhjnmkl")
 
 
     def select_lista(self):
@@ -145,6 +152,8 @@ class Application(Funcs, Relatorios):
         self.tela()
         self.frames_da_tela()
         self.widgets_login()
+
+
         #self.select_lista()
         #self.Menus()
         root.mainloop()
@@ -185,6 +194,35 @@ class Application(Funcs, Relatorios):
                                 , font = ('verdana', 8, 'bold'), command=self.login)
         self.bt_apagar.place(relx=0.35, rely=0.8, relwidth=0.15, relheight=0.05)
         
+
+    def widgets_create_type(self):
+        #TODO::::
+        ## Criação da label e entrada
+        self.lb_nome = Label(self.frame_1, text="App id", bg= '#dfe3ee', fg = '#107db2')
+        self.lb_nome.place(relx=0.05, rely=0.05)
+
+        self.nome_entry = Entry(self.frame_1)
+        self.nome_entry.place(relx=0.05, rely=0.15, relwidth=0.8)
+
+        ### Criação do botao
+        self.bt_apagar = Button(self.frame_1, text="Select", bd=2, bg = '#107db2',fg = 'white'
+                                , font = ('verdana', 8, 'bold'), command=self.go_to_page)
+        self.bt_apagar.place(relx=0.35, rely=0.5, relwidth=0.15, relheight=0.05)
+
+    def widgets_select_app(self):
+        ## Criação da label e entrada
+        self.lb_nome = Label(self.frame_1, text="App id", bg= '#dfe3ee', fg = '#107db2')
+        self.lb_nome.place(relx=0.05, rely=0.05)
+
+        self.nome_entry = Entry(self.frame_1)
+        self.nome_entry.place(relx=0.05, rely=0.15, relwidth=0.8)
+
+        ### Criação do botao
+        self.bt_apagar = Button(self.frame_1, text="Select", bd=2, bg = '#107db2',fg = 'white'
+                                , font = ('verdana', 8, 'bold'), command=self.go_to_page)
+        self.bt_apagar.place(relx=0.35, rely=0.5, relwidth=0.15, relheight=0.05)
+        
+
     def widgets_logging(self):
         ## Criação da label
         self.widgets_logging = Label(self.frame_1, text = "Loading...", bg= '#dfe3ee', fg = '#107db2', font=("Courier", 25))

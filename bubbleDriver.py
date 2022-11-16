@@ -50,8 +50,21 @@ def bubbleLogin(email):
     el=driver.find_element(By.XPATH, el_xpath)
     el.click()
     
-    div = driver.find_element(By.XPATH, "//a[contains(@href, 'apptestpee')]")
+    #div = driver.find_element(By.XPATH, "//a[contains(@href, 'apptestpee')]")
 
+
+def create_field(field_name):
+    driver.get("https://bubble.io/page?name=index&id=apptestpee&tab=tabs-3&subtab=Data+Types&type_id=asfg")
+
+    div_xpath = "//div[contains(@class, 'green-box')]"
+    WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, div_xpath)))
+    div = driver.find_element(By.XPATH, div_xpath)
+    
+    new_type_input = div.find_elements(By.XPATH, "//input[contains(@class, 'bubble-ui')]")[1]
+    new_type_input.send_keys(field_name)
+
+    button_create = div.find_elements(By.XPATH, "//div[contains(., 'Create')]")[12]
+    button_create.click()
 
 email = "prog.aplic.bubble@gmail.com"
 password = "Um2345678"
