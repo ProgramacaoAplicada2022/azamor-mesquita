@@ -52,9 +52,19 @@ def bubbleLogin(email):
     
     #div = driver.find_element(By.XPATH, "//a[contains(@href, 'apptestpee')]")
 
+def bypass_bubble_trial():
+    class_name = "btn-cancel"
+    
+    WebDriverWait(driver, 15000).until(EC.element_to_be_clickable((By.CLASS_NAME, class_name)))
+    cancel_button = driver.find_element(By.CLASS_NAME, class_name)
+    cancel_button.click()
+
 
 def create_field(field_name):
-    driver.get("https://bubble.io/page?name=index&id=apptestpee&tab=tabs-3&subtab=Data+Types&type_id=asfg")
+    in_data_type_tab = driver.current_url.find("subtab=Data+Types") > -1
+    if not in_data_type_tab:
+        driver.get("https://bubble.io/page?name=index&id=apptestpee&tab=tabs-3&subtab=Data+Types&type_id=asfg")
+        bypass_bubble_trial()
 
     div_xpath = "//div[contains(@class, 'green-box')]"
     WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, div_xpath)))
