@@ -94,14 +94,11 @@ class Funcs():
         self.desconecta_bd()
         self.select_lista()
         self.limpa_cliente()
-    def deleta_cliente(self):
-        self.variaveis()
-        self.conecta_bd()
-        self.cursor.execute("""DELETE FROM clientes WHERE cod = ? """, (self.codigo))
-        self.conn.commit()
-        self.desconecta_bd()
-        self.limpa_cliente()
-        self.select_lista()
+    def login(self):
+        self.frame_1.destroy()
+        self.frames_da_tela()
+        self.widgets_frame2()
+        print("screen changed")
 
     def select_lista(self):
         self.listaCli.delete(*self.listaCli.get_children())
@@ -140,7 +137,7 @@ class Application(Funcs, Relatorios):
         #self.Menus()
         root.mainloop()
     def tela(self):
-        self.root.title("Cadastro de Clientes")
+        self.root.title("BubbleLang")
         self.root.configure(background= '#1e3743')
         self.root.geometry("700x250")
         self.root.resizable(True, True)
@@ -173,8 +170,17 @@ class Application(Funcs, Relatorios):
 
         ### Criação do botao
         self.bt_apagar = Button(self.frame_1, text="Login", bd=2, bg = '#107db2',fg = 'white'
-                                , font = ('verdana', 8, 'bold'), command=self.deleta_cliente)
+                                , font = ('verdana', 8, 'bold'), command=self.login)
         self.bt_apagar.place(relx=0.35, rely=0.8, relwidth=0.15, relheight=0.05)
+
+    
+        
+    def widgets_frame2(self):
+        ## Criação da label
+        self.lb_codigo = Label(self.frame_1, text = "BubblefsadLang", bg= '#dfe3ee', fg = '#107db2', font=("Courier", 44))
+        self.lb_codigo.place(relx= 0.05, rely= 0.05 )
+
+        ## Criação da label e entrada
 
     
     def Menus(self):
