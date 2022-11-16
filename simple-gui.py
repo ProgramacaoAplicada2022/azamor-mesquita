@@ -136,8 +136,6 @@ class Application(Funcs, Relatorios):
         self.tela()
         self.frames_da_tela()
         self.widgets_frame1()
-        #self.lista_frame2()
-        #self.montaTabelas()
         #self.select_lista()
         #self.Menus()
         root.mainloop()
